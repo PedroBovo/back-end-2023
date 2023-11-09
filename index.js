@@ -46,7 +46,17 @@ app.post("/item", function (req,res) {
   res.send("item adicionado com sucesso")
 })
 
+//Update -[PUT] /item/:id
+app.put("/item/:id", function(req,res){
 
+  const id = req.params.id - 1
+
+  const novoItem = req.body.nome
+
+  lista[id] = novoItem
+
+  res.send("Item atualizado com sucesso")
+})
 
 
 app.listen(3000)
