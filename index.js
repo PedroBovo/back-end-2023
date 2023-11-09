@@ -18,7 +18,7 @@ const lista = ["Rick Sanchez", "Morty Smith", "Summer Smith"]
 
 // Read all - [GET] /item/
 app.get('/item', function (req, res){
-        res.send(lista)
+        res.send(lista.filter(Boolean))
 })
 
 // Read by ID - [Get] /item/:id
@@ -48,14 +48,26 @@ app.post("/item", function (req,res) {
 
 //Update -[PUT] /item/:id
 app.put("/item/:id", function(req,res){
-
+  //Obtemos o id com parametro de rota
   const id = req.params.id - 1
-
+  //Trocamos o item da lista
   const novoItem = req.body.nome
-
+  
   lista[id] = novoItem
 
   res.send("Item atualizado com sucesso")
+})
+
+//Delete -[DELETE] /item/:id
+app.delete("/item/:id", function(req, res){
+  //Obtemos o id com parametro de rota
+    const id = req.params.id - 1
+
+  //Removemos o item da lista
+    delete lista[id]
+
+    //exibimos uma mensagem de sucesso
+    res.send("Item removido com sucesso")
 })
 
 
